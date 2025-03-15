@@ -7,6 +7,7 @@ class Neuron {
   }
 
   forward(inputs) {
+    inputs = inputs.map(input => input instanceof Value ? input : new Value(input));
     const sum = inputs.reduce((sum, input, i) => sum.add(input.mul(this.weights[i])), this.bias);
     return sum.tanh();
   }
